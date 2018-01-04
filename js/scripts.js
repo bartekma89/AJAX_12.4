@@ -1,5 +1,5 @@
 var button = document.querySelector('#get-joke');
-	var paragraph = document.querySelector('#joke');
+var paragraph = document.querySelector('#joke');
 
 button.addEventListener('click', function () {
 	getJoke();
