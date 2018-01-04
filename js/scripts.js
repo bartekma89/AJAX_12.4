@@ -1,26 +1,16 @@
-var button = document.querySelector('#get-joke');
-	var paragraph = document.querySelector('#joke');
+var $button = $('#get-joke');
+var $paragraph = $('#joke');
+var url = 'http://api.icndb.com/jokes/random';
 
-button.addEventListener('click', function () {
-	getJoke();
-});
-
+$button.click(getJoke);
 getJoke();
 
 function getJoke() {
-
-	var xhr = new XMLHttpRequest();
-	var url = 'http://api.icndb.com/jokes/random';
-	var method = 'GET';
-	xhr.open(method, url);
-
-	xhr.addEventListener('load', function () {
-		if (xhr.status === 200) {
-			var responseJSON = JSON.parse(xhr.response);
-			paragraph.innerHTML = responseJSON.value.joke;
-		}
+	$.ajax({
+		url: url,
+		method: 'get'
+	})
+		.done(function(response) {
+		$paragraph.text(response.value.joke);
 	});
-
-	xhr.send();
-
 }
